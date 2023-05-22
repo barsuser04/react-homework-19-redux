@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-homework-19-redux/static/css/main.964fdded.css",
+    "main.js": "/react-homework-19-redux/static/js/main.8c299b63.js",
+    "index.html": "/react-homework-19-redux/index.html",
+    "main.964fdded.css.map": "/react-homework-19-redux/static/css/main.964fdded.css.map",
+    "main.8c299b63.js.map": "/react-homework-19-redux/static/js/main.8c299b63.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.964fdded.css",
+    "static/js/main.8c299b63.js"
+  ]
+}
