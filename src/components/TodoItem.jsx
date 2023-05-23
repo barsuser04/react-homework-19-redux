@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { styled } from "styled-components";
 import { actionTypesTodo } from "../store/todo";
+import { Button } from "../UI/Button";
 
 const TodoItem = ({ el }) => {
   const dispatch = useDispatch();
@@ -33,24 +34,31 @@ const TodoItem = ({ el }) => {
 
   return (
     <>
-      {el.edit ? (
-        <div>
-          <input
-            type="text"
-            value={editTitle}
-            onChange={(e) => setEditTitle(e.target.value)}
-          />
-          <button onClick={saveEdit}>Save</button>
-        </div>
-      ) : (
-        <Container>
+      <Container>
+        {el.edit ? (
+          <>
+            <MyInput
+              type="text"
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+            />
+            <Button onClick={saveEdit}>Save</Button>
+          </>
+        ) : (
           <h2>{el.title}</h2>
-          <div>
-            <button onClick={() => editHandler(el.id)}>edit</button>
-            <button onClick={() => deleteTodoId(el.id)}>delete</button>
-          </div>
-        </Container>
-      )}
+        )}
+
+        <ButtonDiv>
+          <Button onClick={() => editHandler(el.id)}>edit</Button>
+          <Button
+            bgColor="red"
+            color="white"
+            onClick={() => deleteTodoId(el.id)}
+          >
+            delete
+          </Button>
+        </ButtonDiv>
+      </Container>
     </>
   );
 };
@@ -58,12 +66,49 @@ const TodoItem = ({ el }) => {
 const Container = styled.div`
   display: flex;
   border: 2px solid gray;
-  width: 300px;
+  width: 450px;
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 5px;
   align-items: center;
   justify-content: space-between;
   margin-top: 50px;
 `;
 
+const ButtonDiv = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const MyInput = styled.input`
+  width: 200px;
+  height: 20px;
+  border: 2px solid brown;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+`;
+
 export default TodoItem;
+
+// return (
+//   <>
+//     {el.edit ? (
+//       <div>
+//         <MyInput
+//           type="text"
+//           value={editTitle}
+//           onChange={(e) => setEditTitle(e.target.value)}
+//         />
+//         <Button onClick={saveEdit}>Save</Button>
+//       </div>
+//     ) : (
+//       <Container>
+//         <h2>{el.title}</h2>
+//         <ButtonDiv>
+//           <Button onClick={() => editHandler(el.id)}>edit</Button>
+//           <Button bgColor="red" color="white" onClick={() => deleteTodoId(el.id)}>delete</Button>
+//         </ButtonDiv>
+//       </Container>
+//     )}
+//   </>
+// );

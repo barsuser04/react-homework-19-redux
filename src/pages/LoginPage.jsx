@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionTypes } from "../store/auth";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../UI/Button";
+import { styled } from "styled-components";
 
 const LoginPage = () => {
   const auth = useSelector((state) => state.auth.auth);
@@ -45,8 +47,8 @@ const LoginPage = () => {
     dispatch({ type: actionTypes.LOGIN });
   };
   return (
-    <div>
-      <form onSubmit={submitHandler}>
+    <Container>
+      <Form onSubmit={submitHandler}>
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -62,15 +64,39 @@ const LoginPage = () => {
           value={enteredPassword}
           onChange={passwordChangeHandler}
         />
-      </form>
-      <button onClick={submitHandler} type="submit" disabled={!formIsValid}>
+      </Form>
+      <Button
+        // bgColor="brown"
+        // color="white"
+        onClick={submitHandler}
+        disabled={!formIsValid}
+      >
         Login
-      </button>
+      </Button>
 
-      <h2>{auth.toString()}</h2>
       {auth ? navigate("/contentPage") : null}
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid gray;
+  padding: 20px;
+  border-radius: 10px;
+  gap: 20px;
+
+`
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 10px;
+`;
 
 export default LoginPage;

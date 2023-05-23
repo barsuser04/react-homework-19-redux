@@ -24,6 +24,7 @@ export const todoReducer = (state = initialState, action) => {
       };
     case actionTypesTodo.DELETE_ALL:
       return initialState;
+
     case actionTypesTodo.EDIT:
       return {
         ...state,

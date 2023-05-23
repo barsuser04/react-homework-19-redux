@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import { Button } from "../UI/Button";
 
 const ContentPage = () => {
   const navigate = useNavigate();
@@ -12,9 +13,12 @@ const ContentPage = () => {
           <StyledNavlink to={"todoshka"}>Todoshka</StyledNavlink>
         </>
 
-        <button onClick={() => navigate("/")}>Logout</button>
+        <Button onClick={() => navigate("/")}>Logout</Button>
       </Container>
-      <Outlet />
+
+      <OutletDiv>
+        <Outlet />
+      </OutletDiv>
     </>
   );
 };
@@ -31,6 +35,14 @@ const StyledNavlink = styled(NavLink)`
   font-size: 25px;
   color: aliceblue;
   font-weight: 600;
+`;
+
+const OutletDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  
 `;
 
 export default ContentPage;
